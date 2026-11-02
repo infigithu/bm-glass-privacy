@@ -39,7 +39,7 @@
     }
 
     .container {
-      max-width: 820px;
+      max-width: 840px;
       width: 100%;
     }
 
@@ -137,6 +137,13 @@
       gap: 8px;
     }
 
+    h3 {
+      font-size: 1.05rem;
+      font-weight: 600;
+      margin: 16px 0 8px;
+      color: #fff;
+    }
+
     p {
       margin-bottom: 14px;
       color: #c9d1d9;
@@ -200,6 +207,45 @@
       margin: 16px 0;
     }
 
+    .highlight-box.firefox {
+      border-left-color: #ff9400;
+      background: rgba(255, 148, 0, 0.05);
+    }
+
+    .highlight-box.edge {
+      border-left-color: #0078d4;
+      background: rgba(0, 120, 212, 0.05);
+    }
+
+    .badge {
+      display: inline-block;
+      font-size: 0.75rem;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      margin-right: 6px;
+    }
+
+    .badge-edge {
+      background: rgba(0, 120, 212, 0.2);
+      border: 1px solid rgba(0, 120, 212, 0.4);
+      color: #60cdff;
+    }
+
+    .badge-firefox {
+      background: rgba(255, 148, 0, 0.2);
+      border: 1px solid rgba(255, 148, 0, 0.4);
+      color: #ffb347;
+    }
+
+    .badge-all {
+      background: rgba(63, 185, 80, 0.2);
+      border: 1px solid rgba(63, 185, 80, 0.4);
+      color: #3fb950;
+    }
+
     footer {
       text-align: center;
       font-size: 0.85rem;
@@ -231,28 +277,28 @@
         <span class="brand-name">Bookmark Glass</span>
       </div>
       <h1>Privacy Policy</h1>
-      <div class="effective-date">Effective Date: October 30, 2026</div>
+      <div class="effective-date">Effective Date: October 30, 2026 &bull; Last Updated: November 2, 2026</div>
       <div class="pill-group">
         <span class="pill success">Local-First Storage</span>
         <span class="pill success">No User Tracking</span>
         <span class="pill success">No Account Required</span>
-        <span class="pill">Open & Transparent</span>
+        <span class="pill">Edge &amp; Firefox Editions</span>
       </div>
     </header>
 
     <div class="card">
-      <h2>1. Overview & Core Philosophy</h2>
+      <h2>1. Overview &amp; Core Philosophy</h2>
       <p>
-        <strong>Bookmark Glass</strong> is designed with privacy-first principles. We believe that your bookmarks, personal reading list, and web habits belong strictly to you. 
+        <strong>Bookmark Glass</strong> is a minimal browser bookmark manager, personal link library, and article reading tracker designed with privacy-first principles. This Privacy Policy applies to all official builds of Bookmark Glass, including the <strong>Microsoft Edge</strong> and <strong>Mozilla Firefox</strong> editions.
       </p>
       <p>
-        The extension operates primarily offline on your device. We do not maintain any user databases, cloud servers, or authentication systems. You do not need to create an account or provide an email address to use Bookmark Glass.
+        Both editions operate with a strict local-first architecture. We do not operate user accounts, cloud databases, synchronization servers, or telemetry collectors. Your saved links, personal notes, custom tags, and reading lists remain entirely on your computer.
       </p>
     </div>
 
     <div class="card">
       <h2>2. What Data Is Stored Locally on Your Device</h2>
-      <p>All data created or organized in Bookmark Glass is saved locally in your browser:</p>
+      <p>All data created or organized in Bookmark Glass is saved locally in your browser's dedicated extension storage:</p>
       <table>
         <thead>
           <tr>
@@ -265,7 +311,7 @@
           <tr>
             <td><strong>Browser Bookmarks</strong></td>
             <td><code>browser.bookmarks</code> / <code>chrome.bookmarks</code></td>
-            <td>Syncs directly with your browser's native bookmark and folder system.</td>
+            <td>Reads and syncs with your browser's native bookmark and favorites hierarchy.</td>
           </tr>
           <tr>
             <td><strong>Personal Library Links</strong></td>
@@ -273,105 +319,149 @@
             <td>Stores saved links, custom titles, tags, notes, and favorite flags.</td>
           </tr>
           <tr>
-            <td><strong>Articles & Reading List</strong></td>
+            <td><strong>Articles &amp; Reading List</strong></td>
             <td><code>chrome.storage.local</code> (key: <code>my_articles_library</code>)</td>
-            <td>Stores articles with reading statuses (Want to Read, Reading, Completed) and reading notes.</td>
+            <td>Stores saved articles with reading statuses (Want to Read, In Progress, Done Reading) and notes.</td>
           </tr>
           <tr>
-            <td><strong>Folders & Visual Metadata</strong></td>
+            <td><strong>Folders &amp; Visual Metadata</strong></td>
             <td><code>chrome.storage.local</code> (keys: <code>custom_library_folders</code>, <code>folder_visual_metadata</code>)</td>
-            <td>Stores custom library folder hierarchies and visual folder color selections.</td>
+            <td>Stores custom library folder trees and visual folder color accents.</td>
           </tr>
           <tr>
-            <td><strong>User Settings & Preferences</strong></td>
+            <td><strong>User Settings &amp; Preferences</strong></td>
             <td><code>chrome.storage.local</code> (key: <code>bookmark_glass_settings</code>)</td>
-            <td>Stores layout preferences (grid vs. list), theme preference (dark/light), and display options.</td>
+            <td>Stores independent layout preferences (grid, list, title), theme, and destination defaults.</td>
           </tr>
           <tr>
             <td><strong>Recent Tags Cache</strong></td>
-            <td><code>localStorage</code> (keys: <code>bg-tagpool-lib</code>, <code>bg-tagpool-art</code>)</td>
-            <td>Stores section-specific tag pools for Library and Articles quick-tagging convenience.</td>
+            <td><code>localStorage</code> (keys: <code>bg-tagpool-lib</code>, <code>bg-tagpool-art</code> in Edge; <code>bg-tagpool</code> in Firefox)</td>
+            <td>Stores recently typed tags locally for autocomplete and quick-tagging convenience.</td>
           </tr>
         </tbody>
       </table>
     </div>
 
     <div class="card">
-      <h2>3. External Requests & Third-Party Services</h2>
+      <h2>3. Favicon Resolution &amp; External Requests</h2>
       <p>
-        Bookmark Glass is built with a strict local-first architecture and does not transmit your personal data, bookmarks, saved notes, or reading history to any proprietary servers or third-party tracking services.
+        Bookmark Glass does not transmit your personal data, saved notes, or reading history to any proprietary servers. Favicon resolution operates as follows depending on your browser edition:
       </p>
 
-      <div class="highlight-box">
-        <strong>Native Favicon Resolution (Zero Third-Party Transmission):</strong>
+      <div class="highlight-box edge">
+        <strong><span class="badge badge-edge">Microsoft Edge</span> Native Local Favicon Resolution (Zero External Transmission):</strong>
         <p style="margin-top: 6px; margin-bottom: 0;">
-          Website icons (favicons) are retrieved entirely locally through the browser's native internal cache using Chromium's extension favicon endpoint (<code>/_favicon/</code>) enabled by the <code>favicon</code> permission. No URLs, domain names, or IP addresses are sent to any external icon service.
+          The Microsoft Edge edition retrieves website icons entirely locally through Chromium's extension endpoint (<code>/_favicon/</code>) supported by the <code>favicon</code> permission. Icons are served directly from Edge's local browser cache. <strong>No website URLs, domain names, or IP addresses are transmitted to any external third-party server.</strong>
         </p>
       </div>
 
-      <p style="margin-top: 14px;">
-        <strong>Voluntary Feedback Form:</strong> The extension dashboard includes an optional feedback banner linking to a Google Form. Clicking "Share Feedback" opens the form in a new tab. Submitting feedback is completely voluntary and handled directly on Google Forms.
-      </p>
+      <div class="highlight-box firefox">
+        <strong><span class="badge badge-firefox">Mozilla Firefox</span> External Favicon Service:</strong>
+        <p style="margin-top: 6px; margin-bottom: 8px;">
+          Because Firefox's WebExtensions API does not provide an equivalent local favicon cache endpoint, the Firefox edition loads website icons using the public Google Favicon endpoint:
+          <br>
+          <code>https://www.google.com/s2/favicons?domain=[domain]&amp;sz=64</code>
+        </p>
+        <ul style="margin-bottom: 0;">
+          <li><strong>What is transmitted:</strong> Only the web domain name or origin (e.g., <code>github.com</code> or <code>wikipedia.org</code>) of the saved link is included in the image request.</li>
+          <li><strong>What is NOT transmitted:</strong> Full page URLs, pathnames, search query strings, user notes, tags, or personal identifiers are <em>never</em> sent.</li>
+          <li><strong>Provider:</strong> Google LLC. Requests are subject to <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Google's Privacy Policy</a>.</li>
+        </ul>
+      </div>
 
+      <h3>Shared Network Disclosures (Both Editions)</h3>
       <p>
-        <strong>No Telemetry or Tracking:</strong> We do not integrate Google Analytics, Mixpanel, Sentry, or any third-party telemetry, tracking, or advertising scripts.
+        <strong>Voluntary Feedback Form:</strong> The extension dashboard includes an optional feedback banner linking to a Google Form. Clicking "Share Feedback" opens the form in a new tab. Submitting feedback is completely optional and handled directly on Google Forms.
+      </p>
+      <p>
+        <strong>No Telemetry, Analytics, or Tracking:</strong> Neither edition integrates Google Analytics, Mixpanel, Sentry, or any third-party telemetry, tracking, or advertising scripts.
       </p>
     </div>
 
     <div class="card">
-      <h2>4. Browser Permissions Used</h2>
+      <h2>4. Mozilla Firefox Data Collection Declarations</h2>
+      <p>
+        Under Mozilla's built-in consent framework for Firefox Add-ons, the Firefox edition of Bookmark Glass declares the following data collection permissions in <code>manifest.json</code>:
+      </p>
+      <ul>
+        <li>
+          <strong>Bookmarks (<code>bookmarksInfo</code>):</strong> Declared because domain information from your saved bookmarks is queried against the Google Favicon service to display icons.
+        </li>
+        <li>
+          <strong>Browsing Activity (<code>browsingActivity</code>):</strong> Declared because when you open the popup to save your current active tab, the active page domain is resolved to fetch its favicon preview.
+        </li>
+      </ul>
+      <p>
+        Neither of these data types is ever collected, logged, or retained on any server operated by Bookmark Glass.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>5. Browser Permissions Used</h2>
       <table>
         <thead>
           <tr>
             <th>Permission</th>
+            <th>Applicability</th>
             <th>Why It Is Needed</th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <td><code>bookmarks</code></td>
+            <td><span class="badge badge-all">All Editions</span></td>
             <td>To read existing browser bookmarks and save new bookmarks to your native bookmark folders.</td>
           </tr>
           <tr>
             <td><code>storage</code></td>
+            <td><span class="badge badge-all">All Editions</span></td>
             <td>To store your personal library links, reading list articles, and layout settings locally.</td>
           </tr>
           <tr>
             <td><code>contextMenus</code></td>
+            <td><span class="badge badge-all">All Editions</span></td>
             <td>To provide convenient right-click options ("Save to Bookmark Glass", "Save to My Library").</td>
           </tr>
           <tr>
             <td><code>activeTab</code></td>
+            <td><span class="badge badge-all">All Editions</span></td>
             <td>To obtain the active tab's title and URL strictly when you click the extension action or trigger a save.</td>
           </tr>
           <tr>
             <td><code>scripting</code></td>
-            <td>To inspect the active page's metadata (description and OpenGraph image) when initiating a save.</td>
+            <td><span class="badge badge-all">All Editions</span></td>
+            <td>To inspect the active page's metadata (description and OpenGraph cover image) when initiating a save.</td>
           </tr>
           <tr>
             <td><code>favicon</code></td>
-            <td>To retrieve website icons locally from the browser's internal cache without transmitting data to external servers.</td>
+            <td><span class="badge badge-edge">Edge Edition</span></td>
+            <td>To retrieve website icons locally from Edge's internal browser cache without external network requests.</td>
           </tr>
         </tbody>
       </table>
     </div>
 
     <div class="card">
-      <h2>5. Data Retention, Control & Deletion</h2>
+      <h2>6. Data Retention, Control &amp; Deletion</h2>
       <ul>
         <li>
           <strong>Individual Items:</strong> You can edit or delete any saved bookmark, library link, article, tag, or folder at any time directly through the Bookmark Glass interface.
         </li>
         <li>
-          <strong>Complete Erasure:</strong> To delete all data associated with Bookmark Glass, simply uninstall the extension from your browser (via <code>edge://extensions</code>). Uninstalling immediately purges all local storage.
+          <strong>Complete Erasure:</strong> To delete all data associated with Bookmark Glass, simply uninstall the extension from your browser:
+          <ul>
+            <li>In <strong>Microsoft Edge:</strong> via <code>edge://extensions</code></li>
+            <li>In <strong>Mozilla Firefox:</strong> via <code>about:addons</code></li>
+          </ul>
+          Uninstalling immediately purges all local storage.
         </li>
       </ul>
     </div>
 
     <div class="card">
-      <h2>6. Contact & Updates</h2>
+      <h2>7. Contact &amp; Updates</h2>
       <p>
-        If this Privacy Policy is updated, the revision date at the top will be updated accordingly. If you have questions regarding this policy or the extension's privacy practices, please contact the developer via the GitHub repository or the official extension listing page.
+        If this Privacy Policy is updated, the revision date at the top will be updated accordingly. If you have questions regarding this policy or the extension's privacy practices, please contact the developer via the official GitHub repository or extension store listing pages.
       </p>
     </div>
 
