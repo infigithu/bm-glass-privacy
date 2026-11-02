@@ -289,8 +289,8 @@
           </tr>
           <tr>
             <td><strong>Recent Tags Cache</strong></td>
-            <td><code>localStorage</code> (key: <code>bg-tagpool</code>)</td>
-            <td>Stores a temporary pool of recently typed tags for autocomplete convenience.</td>
+            <td><code>localStorage</code> (keys: <code>bg-tagpool-lib</code>, <code>bg-tagpool-art</code>)</td>
+            <td>Stores section-specific tag pools for Library and Articles quick-tagging convenience.</td>
           </tr>
         </tbody>
       </table>
@@ -299,32 +299,18 @@
     <div class="card">
       <h2>3. External Requests & Third-Party Services</h2>
       <p>
-        Bookmark Glass does not transmit your personal data, saved notes, or reading history to any proprietary servers. The extension only interacts with external services in the following specific circumstances:
+        Bookmark Glass is built with a strict local-first architecture and does not transmit your personal data, bookmarks, saved notes, or reading history to any proprietary servers or third-party tracking services.
       </p>
 
       <div class="highlight-box">
-        <strong>Google Favicon Service:</strong>
+        <strong>Native Favicon Resolution (Zero Third-Party Transmission):</strong>
         <p style="margin-top: 6px; margin-bottom: 0;">
-          To display website icons (favicons) next to your saved bookmarks and reading items, the extension loads images using the public Google Favicon endpoint:
-          <br>
-          <code>https://www.google.com/s2/favicons?domain=[domain]&sz=64</code>
+          Website icons (favicons) are retrieved entirely locally through the browser's native internal cache using Chromium's extension favicon endpoint (<code>/_favicon/</code>) enabled by the <code>favicon</code> permission. No URLs, domain names, or IP addresses are sent to any external icon service.
         </p>
       </div>
 
-      <ul>
-        <li>
-          <strong>What is transmitted:</strong> Only the web domain name or origin (for example, <code>github.com</code> or <code>wikipedia.org</code>) of the saved link is included in the URL to fetch its icon.
-        </li>
-        <li>
-          <strong>What is NOT transmitted:</strong> Full page URLs, pathnames, search query strings, user notes, tags, or personal identifiers are <em>never</em> sent.
-        </li>
-        <li>
-          <strong>Provider:</strong> Google LLC. Requests are subject to <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Google's Privacy Policy</a>.
-        </li>
-      </ul>
-
       <p style="margin-top: 14px;">
-        <strong>Voluntary Feedback Form:</strong> The extension dashboard includes a feedback banner linking to a Google Form. Clicking "Share Feedback" opens the form in a new tab. Submitting feedback is completely optional and handled directly by Google Forms.
+        <strong>Voluntary Feedback Form:</strong> The extension dashboard includes an optional feedback banner linking to a Google Form. Clicking "Share Feedback" opens the form in a new tab. Submitting feedback is completely voluntary and handled directly on Google Forms.
       </p>
 
       <p>
@@ -333,25 +319,7 @@
     </div>
 
     <div class="card">
-      <h2>4. Mozilla Firefox Data Collection Declarations</h2>
-      <p>
-        Under Mozilla's built-in consent framework for Firefox extensions, Bookmark Glass declares the following data collection permissions in <code>manifest.json</code>:
-      </p>
-      <ul>
-        <li>
-          <strong>Bookmarks (<code>bookmarksInfo</code>):</strong> Declared because domain information from your saved bookmarks is queried against the Google Favicon service to display icons.
-        </li>
-        <li>
-          <strong>Browsing Activity (<code>browsingActivity</code>):</strong> Declared because when you open the popup to save your current active tab, the active page domain is resolved to fetch its favicon preview.
-        </li>
-      </ul>
-      <p>
-        Neither of these data types is ever collected, logged, or retained on any external server managed by Bookmark Glass.
-      </p>
-    </div>
-
-    <div class="card">
-      <h2>5. Browser Permissions Used</h2>
+      <h2>4. Browser Permissions Used</h2>
       <table>
         <thead>
           <tr>
@@ -380,24 +348,28 @@
             <td><code>scripting</code></td>
             <td>To inspect the active page's metadata (description and OpenGraph image) when initiating a save.</td>
           </tr>
+          <tr>
+            <td><code>favicon</code></td>
+            <td>To retrieve website icons locally from the browser's internal cache without transmitting data to external servers.</td>
+          </tr>
         </tbody>
       </table>
     </div>
 
     <div class="card">
-      <h2>6. Data Retention, Control & Deletion</h2>
+      <h2>5. Data Retention, Control & Deletion</h2>
       <ul>
         <li>
           <strong>Individual Items:</strong> You can edit or delete any saved bookmark, library link, article, tag, or folder at any time directly through the Bookmark Glass interface.
         </li>
         <li>
-          <strong>Complete Erasure:</strong> To delete all data associated with Bookmark Glass, simply uninstall the extension from your browser (via <code>about:addons</code> in Firefox or <code>edge://extensions</code> in Edge). Uninstalling immediately purges all local storage.
+          <strong>Complete Erasure:</strong> To delete all data associated with Bookmark Glass, simply uninstall the extension from your browser (via <code>edge://extensions</code>). Uninstalling immediately purges all local storage.
         </li>
       </ul>
     </div>
 
     <div class="card">
-      <h2>7. Contact & Updates</h2>
+      <h2>6. Contact & Updates</h2>
       <p>
         If this Privacy Policy is updated, the revision date at the top will be updated accordingly. If you have questions regarding this policy or the extension's privacy practices, please contact the developer via the GitHub repository or the official extension listing page.
       </p>
